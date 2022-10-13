@@ -20,7 +20,53 @@ sap.ui.define([
 					});
 				oModel.setDefaultBindingMode("OneWay");
 				return oModel;
-			}
+			},            
+            createEmployeeModel:function()
+            {
+                var oModel=new JSONModel({
+                    "pages":[
+                        {
+                            "header":"Employee Details",
+                            "firstName":'',
+                            "lastName":'',
+                            "title":'',
+                            "photopath":'',
+                            "displayShape":"Square",
+                            "group":[
+                                {
+                                    "heading": "Contact Details",
+                                    "elements":[
+                                        {
+                                            "label":"Address",
+                                            "value":'',
+                                            "elementType": "text"
+                                            
+                                        },
+                                        {
+                                            "label":"City",
+                                            "value":'',
+                                            "elementType": "text"
+                                        },
+                                        {
+                                            "label":"Post Code",
+                                            "value":'',
+                                            "elementType": "text"
+                                            
+                                        },
+                                        {
+                                            "label":"Phone",
+                                            "value":'',
+                                            "elementType": "phone"
+                                        }
+                                    ]                           
+                                }
+                            ]
+                        }
+                    ]               
+                });
+
+                return oModel;
+            }
 
 		};
 

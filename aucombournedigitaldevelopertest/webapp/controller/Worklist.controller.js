@@ -3,10 +3,11 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
     "au/com/bournedigital/developertest/model/formatter",
+    "au/com/bournedigital/developertest/model/models",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment"
-], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator,Fragment) {
+], function (BaseController, JSONModel, History, formatter, models, Filter, FilterOperator,Fragment) {
     "use strict";
 
     return BaseController.extend("au.com.bournedigital.developertest.controller.Worklist", {
@@ -47,7 +48,7 @@ sap.ui.define([
             this.setModel(oViewModel, "worklistView");
 
             //Model for Employee-Responsible QuickView
-            oEmployeeModel=new JSONModel({});
+            oEmployeeModel=models.createEmployeeModel();
             this.setModel(oEmployeeModel, "employeeModel");
 
             // Make sure, busy indication is showing immediately so there is no
@@ -104,47 +105,15 @@ sap.ui.define([
             debugger;
             var _spath=oEvent.getSource().getBindingContext().getPath();
             var _employeeData=oEvent.getSource().getBindingContext().getModel().getProperty(_spath+"/Employee");
-            this.getModel("employeeModel").setData({
-                "pages":[
-                    {
-                        "header":"Employee Details",
-                        "firstName":_employeeData.FirstName,
-                        "lastName":_employeeData.LastName,
-                        "title":_employeeData.Title,
-                        "photopath":_employeeData.PhotoPath,
-                        "displayShape":"Square",
-                        "group":[
-                            {
-                                "heading": "Contact Details",
-                                "elements":[
-                                    {
-                                        "label":"Address",
-                                        "value":_employeeData.Address,
-                                        "elementType": "text"
-                                        
-                                    },
-                                    {
-                                        "label":"City",
-                                        "value":_employeeData.City,
-                                        "elementType": "text"
-                                    },
-                                    {
-                                        "label":"Post Code",
-                                        "value":_employeeData.PostalCode,
-                                        "elementType": "text"
-                                        
-                                    },
-                                    {
-                                        "label":"Phone",
-                                        "value":_employeeData.HomePhone,
-                                        "elementType": "phone"
-                                    }
-                                ]                           
-                            }
-                        ]
-                    }
-                ]               
-            });               
+            this.getModel("employeeModel").setProperty("/pages/0/firstName",_employeeData.FirstName);
+            this.getModel("employeeModel").setProperty("/pages/0/lastName",_employeeData.LastName);
+            this.getModel("employeeModel").setProperty("/pages/0/title",_employeeData.Title);
+            this.getModel("employeeModel").setProperty("/pages/0/photopath",_employeeData.PhotoPath);
+            this.getModel("employeeModel").setProperty("/pages/0/group/0/elements/0/value",_employeeData.Address);
+            this.getModel("employeeModel").setProperty("/pages/0/group/0/elements/1/value",_employeeData.City);
+            this.getModel("employeeModel").setProperty("/pages/0/group/0/elements/2/value",_employeeData.PostalCode);
+            this.getModel("employeeModel").setProperty("/pages/0/group/0/elements/3/value",_employeeData.HomePhone);
+            this.getModel("employeeModel").refresh();          
             this.openQuickView(oEvent, this.getModel("employeeModel"));
         },
         openQuickView: function (oEvent, oModel) {
