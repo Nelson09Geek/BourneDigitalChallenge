@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "aucombournedigitaldevelopertest-config1",
+            "cwd": "${workspaceFolder}/aucombournedigitaldevelopertest",
+            "runtimeArgs": [
+                "fiori",
+                "run"
+            ],
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npx",
+            "args": [
+                "--open",
+                "test/flpSandbox.html"
+            ],
+            "windows": {
+                "runtimeExecutable": "npx.cmd"
+            },
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "outputCapture": "std",
+            "env": {
+                "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/BourneDigitalChallenge/aucombournedigitaldevelopertest\"}",
+                "FIORI_TOOLS_BACKEND_CONFIG": "[{\"path\":\"/v2\",\"url\":\"https://services.odata.org\",\"destination\":\"Northwind\"}]",
+                "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
+                "FIORI_TOOLS_UI5_VERSION": "1.106.0",
+                "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com"
+            }
+        }
+    ]
+}

@@ -175,7 +175,7 @@ sap.ui.define([
             {
                 var total=0;
                 productList.forEach(element => {
-                    total=total+(element.UnitPrice * 1);  //element.Quantity
+                    total=total+(element.UnitPrice * element.Quantity);  //total price is equal to unit price multiplied by quantity
                 });
                 return total;
             }

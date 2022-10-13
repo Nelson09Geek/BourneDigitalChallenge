@@ -16,8 +16,15 @@ sap.ui.define([
 				}
 				return parseFloat(sValue).toFixed(0);
 			},
+
+            /**
+             * 
+             * @param {string} firstName 
+             * @param {string} lastNa
+             * @return {string} combines both firstname and last name
+             */
             combineName: function (firstName,lastName)
-            {                
+            {                                
                 return firstName+" "+lastName;
             }
 
