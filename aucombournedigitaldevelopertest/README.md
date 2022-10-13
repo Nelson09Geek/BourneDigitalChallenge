@@ -1,36 +1,42 @@
-## Application Details
-|               |
-| ------------- |
-|**Generation Date and Time**<br>Tue Oct 11 2022 05:50:54 GMT+0000 (Coordinated Universal Time)|
-|**App Generator**<br>@sap/generator-fiori-freestyle|
-|**App Generator Version**<br>1.7.5|
-|**Generation Platform**<br>SAP Business Application Studio|
-|**Floorplan Used**<br>simple|
-|**Service Type**<br>None|
-|**Service URL**<br>N/A
-|**Module Name**<br>aucombournedigitaldevelopertest|
-|**Application Title**<br>App Title|
-|**Namespace**<br>aucombournedigitaldevelopertest|
-|**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.102.1|
-|**Enable Code Assist Libraries**<br>False|
-|**Enable TypeScript**<br>False|
-|**Add Eslint configuration**<br>False|
-
-## aucombournedigitaldevelopertest
-
-A Fiori application.
-
-### Starting the generated app
-
--   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply run the following from the generated app root folder:
-
-```
-    npm start
-```
-
-#### Pre-requisites:
-
-1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
 
 
+# README #
+# Developer Challenge #
+
+Please complete the challenge stated below.
+
+The first section is the instructions for how to set up the app.
+
+### Instructions ###
+
+* Sign up for a SAP Cloud Platform trial
+* Add the Northwind destination from this repository to your cloud cockpit
+* Fork this repository and fix the issues
+* Put the authentication method to none and deploy the app to your trial platform
+* Send the url for the repository and the app to us.
+
+### Issues ###
+
+* Change the table layout to include Customer Name | Order Date	| Employee Responsible | Order ID
+* Fix the Order ID to be a number without decimals
+![Master View](/img/Master.png)
+* Append the search to be able to search on Employee Responsible as well as customer name
+* Fix the navigation to the object page
+* Create the object page as the following screenshot
+![Detail View](/img/Detail.png)
+
+[Optional]
+* Create a quickview for the employee responsible from the Employee Entityset with the following details
+![Quickview](/img/Quickview.png)
+
+### Contribution guidelines ###
+
+* Writing tests
+* Code review
+* Other guidelines
+
+### Who do I talk to? ###
+
+
+* For questions, please contact:
+* ben.kemal@bournedigital.com.au or gippy@bournedigital.com.au
