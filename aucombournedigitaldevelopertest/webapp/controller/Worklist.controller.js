@@ -164,19 +164,60 @@ sap.ui.define([
             } else {
                 var aTableSearchState = [];
                 var sQuery = oEvent.getParameter("query");
-
+                var Query1,Query2,fullNameFilter;
                 if (sQuery && sQuery.length > 0) {
-                                            
-                    aTableSearchState = new Filter({
-                        filters: [
-                            new Filter("CustomerID", FilterOperator.Contains, sQuery),
-                            new Filter("Customer/CompanyName", FilterOperator.Contains, sQuery),
-                            new Filter("Employee/FirstName", FilterOperator.Contains, sQuery),
-                            new Filter("Employee/LastName", FilterOperator.Contains, sQuery)                                
-                        ],
-                        and: false
-                    });
-                                            
+
+                    //This logic is for finding space and applying full name search.
+                    if(sQuery.indexOf(' ') >= 0)
+                    {
+                        sQuery = sQuery.replace(/  +/g, ' ');
+                        Query1=sQuery.split(" ")[0];
+                        Query2=sQuery.split(" ")[1];
+
+                        //sameOrderFullNameFilter is for Full name search when firstname and lastname are searched as "Firstname LastName" in same order
+                        var sameOrderFullNameFilter=new Filter({
+                            filters:[
+                                new Filter("Employee/FirstName", FilterOperator.Contains, Query1),
+                                new Filter("Employee/LastName", FilterOperator.Contains, Query2)  
+                            ],
+                            and:true
+                           
+                        });
+
+                        //reverseOrderFullNameFilter is for Full name search when firstname and lastname are searched as "LastName Firstname" in reverse order
+                        var reverseOrderFullNameFilter=new Filter({
+                            filters:[
+                                new Filter("Employee/FirstName", FilterOperator.Contains, Query2),
+                                new Filter("Employee/LastName", FilterOperator.Contains, Query1)  
+                            ],
+                            and:true
+                           
+                        });
+                        aTableSearchState = new Filter({
+                            filters: [
+                                new Filter("CustomerID", FilterOperator.Contains, sQuery),
+                                new Filter("Customer/CompanyName", FilterOperator.Contains, sQuery),
+                                new Filter("Employee/FirstName", FilterOperator.Contains, sQuery),
+                                new Filter("Employee/LastName", FilterOperator.Contains, sQuery),
+                                sameOrderFullNameFilter,
+                                reverseOrderFullNameFilter                                
+                            ],
+                            and: false
+                        });
+
+                    }
+                    //This will work when single word has been typed including firstname and lastname
+                    else{
+                        aTableSearchState = new Filter({
+                            filters: [
+                                new Filter("CustomerID", FilterOperator.Contains, sQuery),
+                                new Filter("Customer/CompanyName", FilterOperator.Contains, sQuery),
+                                new Filter("Employee/FirstName", FilterOperator.Contains, sQuery),
+                                new Filter("Employee/LastName", FilterOperator.Contains, sQuery)                                
+                            ],
+                            and: false
+                        });
+                    }                                            
                 }
                 this._applySearch(aTableSearchState);
             }
